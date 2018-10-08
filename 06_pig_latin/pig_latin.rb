@@ -1,22 +1,58 @@
+def translate(str)
+    # cas spécial voyelles 
+    vowels = ["a", "e", "i", "o", "u"]
+    
+    # cas spécial consonne
+    two_letter_consonants = ["ch", "sh", "qu", "th", "br"]
+    three_letter_consonants = ["thr", "sch", "squ"]
 
-def translate(input)
-    pig_string = ''
-    if input[0] =~ /[aeiou]/
-        return input + 'ay'
-    elsif input[0] =~ /[^aeiou]/ && input[1] =~ /[aeiou]/
-        return input[1..-1] + input[0] + 'ay'
-    elsif input[0..1] =~ /[^aeiou]/
-        return input[2..-1] + input[0..1] + 'ay'
-    else
-        return input[0] + input + 'ay'
-    end
+    # Separer les mots 
+    words = str.split(" ")
+    
+    #Locatliser un mot 
+    result = [];
+    
+    
+    
+    words.each do |word|
+        # mots qui commencent avec voyelles 
+        if vowels.include? word[0]
+            result.push word << 'ay'
+            
+        # mots commencant avec consonne
+      else
+            #special consonnes
+            if three_letter_consonants.include? word[0] + word[1] + word[2]
+                # 
+                first_three_letters = word.slice!(0,3)
+                
+                # ajout lettres 'ay'
+                result.push word << first_three_letters << 'ay'
+                
+            elsif  two_letter_consonants.include? word[0] + word[1]
+                # deux premieres lettres
+                first_two_letters = word.slice!(0,2)
+                
+                # ajouter dernieres lettres'ay'
+                result.push word << first_two_letters << 'ay'
+                
+            else
+               
+                first_letter = word.slice!(0)
+                
+                
+                result.push word << first_letter << 'ay'
+            end 
+    
+        end 
+        
+        
+        
+    end 
+    
+    
+    return result.join(" ")
+
 end
 
-def translate_words(multi_words)
-    word_count = multi_words.split.size
-    if word_count > 1
-        multi_words.map! do |word|
-            translate(word)
-        end
-    end
-end
+translate('three');

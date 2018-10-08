@@ -1,32 +1,29 @@
 def echo(text)
-    return (text)
+    return (text)  #on revoit le mot simplement
 end
 
  def shout(text)
-    return text.upcase
-        #"hello James!".upcase      #=> "HELLO JAMES!"
-        #"hello James!".capitalize  #=> "Hello james!"
-        #"hello James!".titleize    #=> "Hello James!"
+    return text.upcase # cette méthode renvoie le mot au pluriel
+        
  end 
 
- def repeat(text,c=2)
-    #return [text] * c * ' '
-    return ([text] * c).join(' ')
-    #return Array.new(c, text).join(' ')
+
+ def repeat(text,c=3)
+    return [text] * c * ' ' # cette méthode repète le mot deux fois en joignat un espace.
+    
  end 
 
  def start_of_word (text, n)
     myArray = text
-    return myArray.slice(0..n-1) #&& (0,1)
-    #return text.first
-    #return text.chars.first
+    return myArray.slice(0..n-1) #le premier caractère 
+   
  end 
 
  def first_word (text) 
     return text.split.first
  end
 def titleize (text)
-    text.split.map(&:capitalize)*' '
-    #text.capitalize
+    text=m.split.map(&:capitalize)*' '
+   
 end
  
